@@ -159,24 +159,6 @@ body{
 }
 
 
-.hotel-details{
-    grid-column: 6/13;
-    display: flex;
-    flex-direction: column;
-    row-gap: 48px;
-    justify-content: flex-end;
-}
-
-.hotel-image-container{
-    border-radius: var(--radius-large);
-    grid-column: 1/5;
-    display: flex;
-    flex-direction: column;
-    background-image: url(./Assets/hero.jpg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: cover;
-}
 
 
 .text-centering{
@@ -286,20 +268,6 @@ body{
     }
 }
 
-.hotel-action-button {
-    border-radius: 12px;
-    border-color: transparent;
-    padding: 4px;
-    background-color: var(--primary-light);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-
-    .icon {
-      align-self: center; 
-    }
-}
 
 .hero-cards>.card-image:nth-child(1){
     background-image: url(./Assets/heroSmall1.jpeg);
@@ -318,6 +286,77 @@ body{
     justify-content: center;
     align-items: center;
     column-gap: 8px;
+}
+
+.hotel-details{
+    grid-column: 7/13;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+    justify-content: space-between;
+    height: 720px;
+
+    .action_buttons{
+      display: flex;
+      flex-direction: row;
+      flex-basis: 25%;
+      gap: 10px;
+    }
+    .hotel-info {
+        list-style-type: none; 
+        padding: 0; 
+        margin: 0; 
+        .elem {
+          padding: 10px;
+          display: flex;
+          flex-direction: row;
+          gap: 4px;
+        }
+        .long-elem {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+    }
+
+  .hero-cards>.card-image:nth-child(1){
+    background-image: url(./Assets/cards2.jpg);
+  }
+
+  .hero-cards>.card-image:nth-child(2){
+    background-image: url(./Assets/cards2.jpg);
+  }
+}
+
+.hotel-image-container{
+    border-radius: var(--radius-large);
+    grid-column: 1/6;
+    display: flex;
+    flex-direction: column;
+    background-image: url(./Assets/cards2.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    height: 720px;
+}
+
+.hotel-action-button {
+    border-radius: 12px;
+    border-color: transparent;
+    padding: 4px;
+    background-color: var(--primary-light);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    height: 34px;
+
+    .icon {
+      align-self: center; 
+      width: 13px;
+      height: 13px;
+    }
 }
 
 .browse-section{
