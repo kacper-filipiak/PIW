@@ -1,7 +1,5 @@
 "use strict";
 
-let trash_node = undefined;
-
 const onitemclicked = (id) => {
     const item = document.getElementById(id);
     const texts = item.querySelector('div');
@@ -32,8 +30,8 @@ const ondeleteconfirm = () => {
     const id = delete_dialog.itemId;
     const task_list = document.querySelector(`#task_list`);
     const item = document.getElementById(id);
-    trash_node = item;
     const undo_btn = document.querySelector('#undo-btn');
+    undo_btn.trash_node = item;
     undo_btn.removeAttribute("hidden");
     task_list.removeChild(item);
 }
@@ -53,7 +51,7 @@ const ondelete = (id) => {
 const onundo = () => {
     const undo_btn = document.querySelector('#undo-btn');
     undo_btn.setAttribute("hidden", "hidden");
-    task_list.appendChild(trash_node);
+    task_list.appendChild(undo_btn.trash_node);
 }
 
 const adder = () => {
