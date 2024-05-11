@@ -6,10 +6,15 @@ import HotelCard from '../Commons/HotelCard.jsx';
 import ArrowIcon from '../Assets/Arrow.svg';
 import HotelCardActionButton from '../Commons/HotelCardActionButton.jsx'
 import HeartButton from '../Commons/HartButton.jsx'
+import { useNavigate } from "react-router-dom";
 
 const BrowseHotelsScreen = () => {
+    const navigate = useNavigate();
+    const navigateToHotel = (hotel) => {
+        navigate('/rent', {state: {hotel: hotel}})
+    }
     const hotelsDataHTML = hotelsData
-        .map(it => <HotelCard hotel={it} on_image={<HeartButton />} action_button={<HotelCardActionButton />} />);
+        .map(it => <HotelCard hotel={it} on_image={<HeartButton />} action_button={<HotelCardActionButton onClick={() => {navigateToHotel(it)}} />} />);
     return (
         <main>
             <section className="title-section">

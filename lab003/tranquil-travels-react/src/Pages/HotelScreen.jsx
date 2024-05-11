@@ -1,9 +1,10 @@
 import React from "react";
 import EditIcon from '../Assets/edit.png'
 import DeleteIcon from '../Assets/delete.png'
-const HotelScreen = (_hotel) => {
-
-    const hotel = _hotel.hotel;
+import { useLocation } from "react-router-dom";
+const HotelScreen = () => {
+    const {state} = useLocation();
+    const { hotel } = state;
     const hotelName = hotel.name;
     const hotelLocation = hotel.location;
     const hotelDescription = hotel.description;

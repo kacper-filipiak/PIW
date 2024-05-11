@@ -4,8 +4,13 @@ import '../App.css';
 import hotelsData from '../Utils/HotelsData.jsx';
 import HotelCard from '../Commons/HotelCard.jsx';
 import ArrowIcon from '../Assets/Arrow.svg';
+import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
+    const navigate = useNavigate();
+    const navigateToBrowse = () => {
+        navigate('/browse');
+    }
     const hotelsDataHTML = hotelsData
         .map(it => <HotelCard hotel={it} />);
     return (
@@ -31,7 +36,7 @@ const HomeScreen = () => {
                     <section className="grid hotel-cards">
                       {hotelsDataHTML}
                     </section>
-                    <button className="button secondary" onClick="navigate_to_browse_hotels()">Find more <img src={ArrowIcon} alt="" /></button>
+                    <button className="button secondary" onClick={navigateToBrowse}>Find more <img src={ArrowIcon} alt="" /></button>
                 </section>
                 <section id="rent" className="footer grid">
                     <div className="card-image"></div>

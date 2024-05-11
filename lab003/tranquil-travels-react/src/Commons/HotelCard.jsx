@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const HotelCard = ({hotel, on_image, action_button}) => {
 
+    const navigate = useNavigate();
+    const navigateToHotel = (hotel) => {
+        navigate('/rent', {state: {hotel: hotel}})
+    }
     const hotelName = hotel.name;
     const hotelLocation = hotel.location;
     const hotelDescription = hotel.description;
@@ -10,7 +15,7 @@ const HotelCard = ({hotel, on_image, action_button}) => {
     const imageStyle = { backgroundImage: `url(${hotel.image})` };
 
     return (
-        <article className="hotel-card">
+        <article className="hotel-card" onClick={navigateToHotel}>
             <div className="card-image" style={imageStyle}>
                 <div className="image-decor">
                         <p className="chip">{hotelLocation}</p>

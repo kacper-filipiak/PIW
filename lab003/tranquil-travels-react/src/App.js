@@ -9,7 +9,6 @@ import {
     BrowserRouter as Router, Route, Link, Routes
 } from "react-router-dom";
 function App() {
-    const hotelScreens = hotelsData.map(it => <HotelScreen hotel={it} />);
   return (
               <div className="App">
     <Router>
@@ -21,7 +20,7 @@ function App() {
             <ul className="nav-links">
                 <li><Link className="nav-link" to="/">Home</Link></li>
                 <li><Link className="nav-link" to="/browse">Browse</Link></li>
-                <li><Link className="nav-link" to="/rent">Rent with us</Link></li>
+                <li><Link className="nav-link" to="/rent_with_us">Rent with us</Link></li>
                 <li><Link className="nav-link" to="/signup">Sign up</Link></li>
                 <button className="button primary">Log in</button>
             </ul>
@@ -31,12 +30,11 @@ function App() {
       <div className='main-nav-container'>
 
       <Routes>
-          <Route path="/rent" element={hotelScreens} />
+          <Route path="/rent" element={<HotelScreen />} />
           <Route path="/browse" element={<BrowseHotelsScreen />} />
           <Route path="/" element={<HomeScreen /> } />
         </Routes>
 
-        <footer>A tu jest stopka</footer>
       </div>
     </div>
       </Router>
