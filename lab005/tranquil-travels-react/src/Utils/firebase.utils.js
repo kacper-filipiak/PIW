@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
+import { getFirestore } from 'firebase/firestore';
 import { signOut, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -20,7 +21,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
-export const auth = getAuth();
+export const auth = getAuth(firebaseApp);
+export const firestore = getFirestore(firebaseApp);
 
 // Initialize Firebase Auth provider
 const provider = new GoogleAuthProvider();
