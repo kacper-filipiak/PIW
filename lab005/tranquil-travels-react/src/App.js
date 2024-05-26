@@ -36,7 +36,7 @@ function App() {
       <div className='main-nav-container'>
 
       <Routes>
-          <Route path="/rent" element={<HotelScreen />} />
+          <Route path="/rent/:id" element={<HotelScreen />} />
           <Route path="/browse" element={<BrowseHotelsScreen />} />
           <Route path="/" element={<HomeScreen /> } />
           <Route path="/login" element={<Login /> } />

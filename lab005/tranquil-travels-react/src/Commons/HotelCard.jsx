@@ -5,8 +5,9 @@ const HotelCard = ({hotel, on_image, action_button}) => {
 
     const navigate = useNavigate();
     const navigateToHotel = (hotel) => {
-        navigate('/rent', {state: {hotel: hotel}})
+        navigate('/rent/' + hotel.id);
     }
+    const hotel_id = hotel.id;
     const hotelName = hotel.name;
     const hotelLocation = hotel.location;
     const hotelDescription = hotel.description;
@@ -15,7 +16,7 @@ const HotelCard = ({hotel, on_image, action_button}) => {
     const imageStyle = { backgroundImage: `url(${hotel.image})` };
 
     return (
-        <article className="hotel-card" onClick={navigateToHotel}>
+        <article className="hotel-card" onClick={() => navigateToHotel(hotel)}>
             <div className="card-image" style={imageStyle}>
                 <div className="image-decor">
                         <p className="chip">{hotelLocation}</p>

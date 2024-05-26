@@ -1,18 +1,32 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import EditIcon from '../Assets/edit.png'
 import DeleteIcon from '../Assets/delete.png'
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { readHotel } from "../Utils/hotelService.js";
+
 const HotelScreen = () => {
-    const {state} = useLocation();
-    const { hotel } = state;
-    const hotelName = hotel.name;
-    const hotelLocation = hotel.location;
-    const hotelDescription = hotel.description;
-    const hotelRaiting = '★'.repeat(Number(hotel.rating));
-    const hotelPrice = hotel.price;
-    const imageStyle = { backgroundImage: `url(${hotel.image})` };
-    const hotelDetailImagesHTML = hotel.detailImages
-      .map(it => <div className="card-image" style={{ backgroundImage: `url(${it})` }} />);
+    const {id} = useParams();
+  if (!id) {
+    console.log("No id passed in navigation");
+  }
+
+   const [hotel, setHotel] = useState(null);
+
+      useEffect(()=>{
+
+        readHotel(id).then(doc => setHotel(doc))
+
+      },[]);
+
+    const hotelName = hotel?.name;
+    const hotelLocation = hotel?.location;
+    const hotelDescription = hotel?.description;
+    const hotelRaiting = '★'.repeat(Number(hotel?.rating));
+    const hotelPrice = hotel?.price;
+    const imageStyle = { backgroundImage: `url(${hotel?.image})` };
+    const hotelDetailImagesHTML = hotel?.detailImages
+      ?.map(it => <div className="card-image" style={{ backgroundImage: `url(${it})` }} />);
 
 
   return (

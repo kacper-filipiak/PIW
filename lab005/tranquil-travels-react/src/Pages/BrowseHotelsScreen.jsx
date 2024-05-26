@@ -1,7 +1,8 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import '../App.css';
 // odczytujemy dane z pliku z danymi
-import hotelsData from '../Utils/HotelsData.jsx';
+import { readHotels } from '../Utils/hotelService.js';
 import HotelCard from '../Commons/HotelCard.jsx';
 import ArrowIcon from '../Assets/Arrow.svg';
 import HotelCardActionButton from '../Commons/HotelCardActionButton.jsx'
@@ -10,11 +11,15 @@ import { useNavigate } from "react-router-dom";
 
 const BrowseHotelsScreen = () => {
     const navigate = useNavigate();
-    const navigateToHotel = (hotel) => {
-        navigate('/rent', {state: {hotel: hotel}})
-    }
-    const hotelsDataHTML = hotelsData
-        .map(it => <HotelCard hotel={it} on_image={<HeartButton />} action_button={<HotelCardActionButton onClick={() => {navigateToHotel(it)}} />} />);
+    const [hotels, setHotels] = useState([]);
+    const hotelsDataHTML = hotels
+        .map(it => <HotelCard hotel={it} on_image={<HeartButton />} action_button={<HotelCardActionButton onClick={() => {navigate('/rent/' + it.id);}} />} />);
+
+      useEffect(()=>{
+
+        readHotels().then(docs => setHotels(docs))
+
+      });
     return (
         <main>
             <section className="title-section">
