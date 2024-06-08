@@ -13,29 +13,26 @@ import { useOutletContext } from "react-router-dom";
 import { useContext } from "react";
 import LikedContext from "../context/likedContext.js";
 
-const BrowseHotelsScreen = () => {
+const LikedScreen = () => {
     const navigate = useNavigate();
+    const {state, dispatch} = useContext(LikedContext);
+    console.log("Like state: ", state);
+    console.log("state.liked_hotels ", state.liked_hotels);
+    const hotelsDataHTML = state.liked_hotels
+        .map(it => <HotelCard hotel={it} onClick={()=>{
+            console.log("Dislike");
+            dispatch({type:"unlike", hotel:it});
+            console.log("Dislike");
+        }} on_image={<HeartButton hotel={it}/>}  action_button={<HotelCardActionButton onClick={() => {navigate('/rent/' + it.id);}} />} />);
 
-    const [liked_hotels, setLikedHotels] = useOutletContext();
-    const {dispatch} = useContext(LikedContext);
-
-    const [hotels, setHotels] = useState([]);
-    const hotelsDataHTML = hotels
-        .map(it => <HotelCard hotel={it} on_image={<HeartButton  hotel={it} />}  action_button={<HotelCardActionButton onClick={() => {navigate('/rent/' + it.id);}} />} />);
-
-      useEffect(()=>{
-
-        readHotels().then(docs => setHotels(docs))
-
-      });
     return (
         <main>
             <section className="title-section">
                 <p className="title-large">Welcome your tranquility oasis awaits</p>
             </section>
+            <button onClick={()=>{localStorage.clear()}}> Clear local storage </button>
             <section id="browse" className="browse-section">
-                <p className="title-middle">Explore the hotels</p>
-                <input className="searchbar" placeholder="Search by hotel name, place etc." />
+                <p className="title-middle">Your's beloved hotels</p>
                 <section className="grid hotel-cards">
                   {hotelsDataHTML}
                 </section>
@@ -45,4 +42,4 @@ const BrowseHotelsScreen = () => {
 
 }
 
-export default BrowseHotelsScreen;
+export default LikedScreen;

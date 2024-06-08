@@ -16,7 +16,7 @@ const HotelCard = ({hotel, on_image, action_button}) => {
     const imageStyle = { backgroundImage: `url(${hotel.image})` };
 
     return (
-        <article className="hotel-card" onClick={() => navigateToHotel(hotel)}>
+        <article className="hotel-card" >
             <div className="card-image" style={imageStyle}>
                 <div className="image-decor">
                         <p className="chip">{hotelLocation}</p>
